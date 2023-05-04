@@ -19,6 +19,8 @@ class bst
 {
 	node *root;
 
+    void insert(int data);
+
 	public:
 	bst()
 	{
@@ -28,9 +30,89 @@ class bst
 
 };
 
+
+void bst::insert(int data)
+{
+	node *curr,*temp;
+	temp=new node;
+	if(temp==NULL)
+    {
+        cout<<"memory not allocated"<<endl;
+        return;
+    }
+
+    temp->data=data;
+    temp->left=temp->right=NULL;
+
+    if(root==NULL)
+    {
+    	root=temp;
+    	cout<<"\n"<<data<<" inserted in the bst";
+    	return;
+    }
+
+
+    curr=root;
+
+    while(1)
+    {
+    	if(curr->data>data)
+    	{
+    		if(curr->left==NULL)
+    		{
+    			curr->left=temp;
+    			cout<<"\n"<<data<<" inserted in the bst";
+		    	return;
+    		}
+    		else
+    			curr=curr->left;
+    	}
+    	else if(curr->data<data)
+    	{
+    		if(curr->right==NULL)
+    		{
+    			curr->right=temp;
+    			cout<<"\n"<<data<<" inserted in the bst";
+		    	return;
+    		}
+    		else
+    			curr=curr->right;
+    	}
+    	else
+    	{
+    		cout<<"\n"<<data<<" already exits in the bst";
+		    return;
+    	}
+    }
+}
+
+
 void bst::menu()
 {
-	int ch;
+	int ch,data;
+
+    //sample data
+    insert(15);
+	insert(10);
+	insert(20);
+    insert(17);                 
+	insert(11);
+	insert(5);
+    insert(7);
+	insert(23);
+	insert(30);
+
+    /*
+                    15
+                 /      \
+                10       20
+              /   \    /    \
+             5     11 17     23
+               \               \ 
+                7               30
+    */
+
+
 
     while(true)
     {
@@ -44,13 +126,16 @@ void bst::menu()
 		cout<<"\n7. display preorder";  
 		cout<<"\n8. display postorder";
 		cout<<"\n9. delete node"; 
-		cout<<"\n13.exit";
+		cout<<"\n10.exit";
 		cout<<"\n\nEnter the choice: ";
 		cin>>ch;
 
         switch(ch)
         {
             case 1:
+                cout<<"\nenter the number you want to insert: ";
+				cin>>data;
+            	insert(data);
                 break;
             case 2:
                 break;
@@ -69,12 +154,6 @@ void bst::menu()
 			case 9:
                 break;
 			case 10:
-				break;
-			case 11:
-                break;
-			case 12:
-                break;
-			case 13:
                 return;
             default:
                 cout<<"\nenter the correct choice";
