@@ -19,7 +19,8 @@ class bst
 {
 	node *root;
 
-    void insert(int data);
+    void insert(int data); 	//take integer as an argument and inserts it into tree
+	void search_minimum();	//print the smallest number in the entire tree
 
 	public:
 	bst()
@@ -87,6 +88,15 @@ void bst::insert(int data)
 }
 
 
+void bst::search_minimum()
+{
+	node *current=root;
+	while(current->left!=NULL)
+		current=current->left;
+	cout<<"\nminimum data value in the tree is : "<< current->data;
+}
+
+
 void bst::menu()
 {
 	int ch,data;
@@ -140,6 +150,8 @@ void bst::menu()
             case 2:
                 break;
             case 3:
+				//searches and prints the smallest value in the entire tree
+				search_minimum();
                 break;
             case 4:
                 break;
