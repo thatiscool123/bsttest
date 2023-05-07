@@ -17,6 +17,7 @@ class node
 
 class bst
 {
+	public:
 	node *root;
 
     void insert(int data); 	//take integer as an argument and inserts it into tree
@@ -26,10 +27,10 @@ class bst
 	void search_del(node *&, int , node *&); //this function gets the node to be deleted and its parent
 	void delete_node(node *&, int); //this deletes the node with help of search_del and inoder_successor functions
 	node* inoder_successor(node*);	//this returns the inorder successor of node to deleted which has 2 childrens
+	void inorder_traversal(node *curr);
 
 
 
-	public:
 	bst()
 	{
 		root=NULL;
@@ -151,7 +152,7 @@ void bst::delete_node(node*& root,int data)//this needs to be *& to change curr-
 		else
 			root=NULL;
 
-		free(curr);
+		curr=NULL;
 		cout<<"\n"<<data<<" is deleted from the tree";
 	}
 	else if(curr->left!=NULL && curr->right!=NULL)
@@ -175,7 +176,7 @@ void bst::delete_node(node*& root,int data)//this needs to be *& to change curr-
 		else
 			root=temp;
 
-		free(curr);
+	curr=NULL;
 		cout<<"\n"<<data<<" is deleted from the tree";
 	}
 	return;
@@ -190,7 +191,15 @@ node* bst::inoder_successor(node* curr)
 	return curr;
 }
 
+void bst :: inorder_traversal(node *curr)
+{
+    if(curr == NULL) // Base case
+	         return;
 
+    inorder_traversal(curr->left); // Traverse left subtree
+    cout << curr->data << " "; // Visit node
+    inorder_traversal(curr->right); // Traverse right subtree
+}
 void bst::menu()
 {
 	int ch,data;
@@ -252,6 +261,7 @@ void bst::menu()
 			case 5:
 				break;
             case 6:
+            	inorder_traversal(root);
 				break;
 			case 7:
                 break;
