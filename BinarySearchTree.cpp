@@ -1,7 +1,6 @@
 /*
 github exercise
 */
-//aaaaa
 #include<iostream>
 
 using namespace std;
@@ -17,7 +16,7 @@ class node
 
 class bst
 {
-	public:
+	
 	node *root;
 
     void insert(int data); 	//take integer as an argument and inserts it into tree
@@ -30,7 +29,7 @@ class bst
 	void inorder_traversal(node *curr);
 
 
-
+public:
 	bst()
 	{
 		root=NULL;
@@ -176,7 +175,7 @@ void bst::delete_node(node*& root,int data)//this needs to be *& to change curr-
 		else
 			root=temp;
 
-	curr=NULL;
+		delete curr;
 		cout<<"\n"<<data<<" is deleted from the tree";
 	}
 	return;
