@@ -27,7 +27,7 @@ class bst
 	void delete_node(node *&, int); //this deletes the node with help of search_del and inoder_successor functions
 	node* inoder_successor(node*);	//this returns the inorder successor of node to deleted which has 2 childrens
 	void inorder_traversal(node *curr);
-	void search(node *&,int a);  //this func' gets data and check wethar the data present or not
+	void search(node *&,int);  //this func' gets data and check wether the data present or not
 	void postorder_traversal(node *curr);//returns postorder traversal
 
 public:
@@ -209,25 +209,29 @@ void bst :: postorder_traversal(node *curr)
     postorder_traversal(curr->right); // Traverse right subtree
 	cout << curr->data << " "; // Visit node
 }
-void bst::search(node *& curr,int a)
+
+
+void bst::search(node *& curr,int data)
+{
+	if(curr==NULL)
 	{
-		if(curr==NULL)
-		{
-			cout<<"Data not present";
-		}
-		else if(curr->data==a)
-		{
-			cout<<"Data found.";
-		}
-		else if(curr->data>a)
-		{
-			search(curr->left,a);
-		}
-		else if(curr->data<a)
-		{
-			search(curr->right,a);
-		}
+		cout<<"Data not present";
 	}
+	else if(curr->data==data)
+	{
+		cout<<"Data found.";
+	}
+	else if(curr->data>data)
+	{
+		search(curr->left,data);
+	}
+	else if(curr->data<data)
+	{
+		search(curr->right,data);
+	}
+}
+
+
 void bst::menu()
 {
 	int ch,data;
