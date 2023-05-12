@@ -29,6 +29,7 @@ class bst
 	void inorder_traversal(node *curr);
 	void search(node *&,int);  //this func' gets data and check wether the data present or not
 	void postorder_traversal(node *curr);//returns postorder traversal
+	void mirror(node *&)
 
 public:
 	bst()
@@ -270,8 +271,9 @@ void bst::menu()
 		cout<<"\n6. display inorder";   
 		cout<<"\n7. display preorder";  
 		cout<<"\n8. display postorder";
-		cout<<"\n9. delete node"; 
-		cout<<"\n10.exit";
+		cout<<"\n9. delete node";
+		cout<<"\n10.mirror";
+		cout<<"\n11.exit";
 		cout<<"\n\nEnter the choice: ";
 		cin>>ch;
 
@@ -309,14 +311,35 @@ void bst::menu()
 				delete_node(root,data);
                 break;
 			case 10:
+			    cout<<"make a tree you want"<<endl;
+				cin>>data;
+				insert(data);
+				mirror(data);
+				break;
+			case 11:
                 return;
             default:
                 cout<<"\nenter the correct choice";
         }
     }
 }
-
-
+void mirror (node *&)
+{
+	 if (node == NULL)
+        return;
+    else {
+         node* temp;
+ 
+        /* do the subtrees */
+        mirror(node->left);
+        mirror(node->right);
+ 
+        /* swap the pointers in this node */
+        temp = node->left;
+        node->left = node->right;
+        node->right = temp;
+    }
+}
 int main()
 {
 	bst b;
